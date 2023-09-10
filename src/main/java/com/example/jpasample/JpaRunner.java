@@ -24,8 +24,17 @@ public class JpaRunner implements ApplicationRunner {
         account.setUsername("namedddd");
         account.setPassword("pass");
 
+        Study study = new Study();
+        study.setName("spring data jpa");
+        study.setOwner(account);
+
+        //영방향 관계에서 반드시 양쪽에 설정해주도록 한다.
+        account.getSudies().add(study);
+        study.setOwner(account);
+
         try (Session session = entityManager.unwrap(Session.class)) {
             session.save(account);
+            session.save(study);
         }
         //entityManager.persist(account);
     }

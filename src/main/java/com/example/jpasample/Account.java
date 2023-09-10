@@ -1,10 +1,13 @@
 package com.example.jpasample;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 //@Data
 @Entity(name = "users")
@@ -17,6 +20,15 @@ public class Account {
     private String username;
 
     private String password;
+
+    public void setSudies(Set<Study> sudies) {
+        this.sudies = sudies;
+    }
+
+    //owner 가 관계 주라는걸 알려줘야 중복 코드를 방지할 수 있음
+    @Getter
+    @OneToMany(mappedBy = "owner")
+    private Set<Study> sudies = new HashSet<>();
 
     private String email;
 
