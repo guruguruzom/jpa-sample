@@ -13,9 +13,12 @@ spring:
     url: jdbc:mariadb://localhost:3306/jpa_sample
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
-    password: qwe123!@#
+    password: dev_testdb##124
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create #update
     show-sql: true
     generate-ddl: true
+    properties:
+      hibernate:
+        format_sql: true
