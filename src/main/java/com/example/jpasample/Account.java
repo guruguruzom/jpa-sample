@@ -12,6 +12,7 @@ import java.util.Set;
 //@Data
 @Entity(name = "users")
 public class Account {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -75,5 +76,15 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void addStudy(Study study){
+        this.getSudies().add(study);
+        study.setOwner(this);
+    }
+
+    public void removeStudy(Study study){
+        this.getSudies().remove(study);
+        study.setOwner(null);
     }
 }

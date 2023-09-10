@@ -29,8 +29,7 @@ public class JpaRunner implements ApplicationRunner {
         study.setOwner(account);
 
         //영방향 관계에서 반드시 양쪽에 설정해주도록 한다.
-        account.getSudies().add(study);
-        study.setOwner(account);
+        account.addStudy(study);
 
         try (Session session = entityManager.unwrap(Session.class)) {
             session.save(account);
