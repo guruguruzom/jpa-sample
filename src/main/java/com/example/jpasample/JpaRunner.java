@@ -34,7 +34,12 @@ public class JpaRunner implements ApplicationRunner {
         try (Session session = entityManager.unwrap(Session.class)) {
             session.save(account);
             session.save(study);
+            //1차 캐시 상태
+
+            Account selectAccount = session.load(Account.class, account.getId());
+            //이 상태에선 select 쿼리문이 실행되지 않으며 객체에서 가져옴
         }
-        //entityManager.persist(account);
+        //persistent 상태에서 종료된다면 detached상태로 변경됨
+        //트랜젝션이 끝나면 insert 쿼리문이 실행된다.
     }
 }
