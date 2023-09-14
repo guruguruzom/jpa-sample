@@ -16,7 +16,7 @@ spring:
     password: dev_testdb##124
   jpa:
     hibernate:
-      ddl-auto: create #update
+      ddl-auto: update #update
     show-sql: true
     generate-ddl: true
     properties:

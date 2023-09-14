@@ -15,7 +15,8 @@ public class Post {
 
     private String title;
 
-    @OneToMany(mappedBy = "post", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    //즉시로딩으로 모든 comment 를 가져온다
+    @OneToMany(mappedBy = "post", cascade = {CascadeType.PERSIST, CascadeType.REMOVE }, fetch = FetchType.EAGER)
     private Set<Comment> comments = new HashSet<>();
 
     public void addComment(Comment comment){
