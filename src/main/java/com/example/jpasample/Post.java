@@ -16,7 +16,7 @@ public class Post {
     private String title;
 
     //즉시로딩으로 모든 comment 를 가져온다
-    @OneToMany(mappedBy = "post", cascade = {CascadeType.PERSIST, CascadeType.REMOVE }, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "post", cascade = {CascadeType.PERSIST, CascadeType.REMOVE })
     private Set<Comment> comments = new HashSet<>();
 
     public void addComment(Comment comment){
@@ -49,4 +49,11 @@ public class Post {
 //private Set<Comment> commentSet;
 
 
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }

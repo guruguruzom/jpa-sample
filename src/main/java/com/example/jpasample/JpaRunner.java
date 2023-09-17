@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 //jpa에 사용되는 모든 bean들이 자동으로 등록된다
 @Component
@@ -15,26 +17,39 @@ import javax.persistence.PersistenceContext;
 public class JpaRunner implements ApplicationRunner {
     @PersistenceContext
     EntityManager entityManager;
+
+
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
-//        Post post = new Post();
-//        post.setTitle("String JPA");
-//
-//        Comment comment = new Comment();
-//        comment.setComment("내용내용내용냉");
-//        post.addComment(comment);
-//
-//        Comment comment1 = new Comment();
-//        comment1.setComment("내용내용내용냉2");
-//        post.addComment(comment1);
+        //table 기준이 아닌 entity 기준으로 작성
+        //HPQL이 각 db에 맞는 쿼리로 변환이 되서 실행됨
+        TypedQuery<Post> query = entityManager.createQuery("SELECT p FROM Post As p", Post.class);
+        List<Post> postList = query.getResultList();
+        postList.forEach(System.out::println);
 
-        Session session = entityManager.unwrap(Session.class);
-
-        Post post = session.get(Post.class, 1l);
-        System.out.println(post.getTitle());
-        //session.save(post);
     }
-
+    ///--------------------------------------------------------------------------------------//
+//    @Override
+//    public void run(ApplicationArguments args) throws Exception {
+////        Post post = new Post();
+////        post.setTitle("String JPA");
+////
+////        Comment comment = new Comment();
+////        comment.setComment("내용내용내용냉");
+////        post.addComment(comment);
+////
+////        Comment comment1 = new Comment();
+////        comment1.setComment("내용내용내용냉2");
+////        post.addComment(comment1);
+//
+//        Session session = entityManager.unwrap(Session.class);
+//
+//        Post post = session.get(Post.class, 1l);
+//        System.out.println(post.getTitle());
+//        //session.save(post);
+//    }
+//--------------------------------------------------------------------------------------//
 //    @Override
 //    public void run(ApplicationArguments args) throws Exception {
 //        Account account = new Account();
