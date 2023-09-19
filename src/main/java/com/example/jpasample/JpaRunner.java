@@ -1,6 +1,7 @@
 package com.example.jpasample;
 
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -15,20 +16,31 @@ import java.util.List;
 @Component
 @Transactional
 public class JpaRunner implements ApplicationRunner {
-    @PersistenceContext
-    EntityManager entityManager;
 
+    @Autowired
+    PostRepository postRepository;
 
-
-    @Override
     public void run(ApplicationArguments args) throws Exception {
-        //table 기준이 아닌 entity 기준으로 작성
-        //HPQL이 각 db에 맞는 쿼리로 변환이 되서 실행됨
-        TypedQuery<Post> query = entityManager.createQuery("SELECT p FROM Post As p", Post.class);
-        List<Post> postList = query.getResultList();
-        postList.forEach(System.out::println);
-
+        postRepository.findAll().forEach(System.out::println);
     }
+
+
+//    @PersistenceContext
+//    EntityManager entityManager;
+//    @Override
+//    public void run(ApplicationArguments args) throws Exception {
+////        List<Post> postList = entityManager.createNativeQuery("SELECT * FROM Post", Post.class)
+////                .getResultList();
+////
+////        postList.forEach(System.out::println);
+//
+//        //table 기준이 아닌 entity 기준으로 작성
+//        //HPQL이 각 db에 맞는 쿼리로 변환이 되서 실행됨
+//        TypedQuery<Post> query = entityManager.createQuery("SELECT p FROM Post As p", Post.class);
+//        List<Post> postList = query.getResultList();
+//        postList.forEach(System.out::println);
+//
+//    }
     ///--------------------------------------------------------------------------------------//
 //    @Override
 //    public void run(ApplicationArguments args) throws Exception {

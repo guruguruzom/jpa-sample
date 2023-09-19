@@ -2,6 +2,7 @@ package com.example.jpasample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 @SpringBootApplication
+//생략 @EnableJpaRepositories
 public class JpaSampleApplication {
 
     public static void main(String[] args) {
