@@ -3,6 +3,7 @@ package com.example.jpasample;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.repository.query.QueryLookupStrategy;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 
 @SpringBootApplication
 //생략 @EnableJpaRepositories
+@EnableJpaRepositories(queryLookupStrategy = QueryLookupStrategy.Key.CREATE_IF_NOT_FOUND)
 public class JpaSampleApplication {
 
     public static void main(String[] args) {
