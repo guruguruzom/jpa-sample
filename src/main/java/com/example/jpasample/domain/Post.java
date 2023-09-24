@@ -1,7 +1,5 @@
-package com.example.jpasample;
+package com.example.jpasample.domain;
 
-
-import lombok.Getter;
 
 import javax.persistence.*;
 import java.util.HashSet;

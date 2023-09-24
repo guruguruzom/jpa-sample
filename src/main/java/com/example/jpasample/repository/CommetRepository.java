@@ -1,8 +1,7 @@
-package com.example.jpasample;
+package com.example.jpasample.repository;
 
+import com.example.jpasample.domain.Comment;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.RepositoryDefinition;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,6 +10,6 @@ import java.util.List;
 //MyRepository 를 상속받으며 위 어노테이션은 사용하지 않는다
 public interface CommetRepository extends MyRepository<Comment, Long> {
 
-    @Query("SELECT c FROM Comment As c") //정의된 쿼리를 보고 생성
+    @Query(value = "SELECT c FROM Comment As c", nativeQuery = true) //정의된 쿼리를 보고 생성
     List<Comment> findByTitleContains(String keyword); //메서드 이름을 분석해서 쿼리생성
 }

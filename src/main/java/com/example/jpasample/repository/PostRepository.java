@@ -1,7 +1,8 @@
-package com.example.jpasample;
+package com.example.jpasample.repository;
 
 
 
+import com.example.jpasample.domain.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-package com.example.jpasample;
+package com.example.jpasample.repository;
 
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.Repository;
